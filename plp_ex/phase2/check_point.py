@@ -156,5 +156,8 @@ def fast_method(sleep_sec):
     print "in fast method"
     sleep(sleep_sec) 
     print "out fast method"
-    
+ 
+print "this should not print log"   
+fast_method(0.01)
+print "this should print log"
 fast_method(0.05)
