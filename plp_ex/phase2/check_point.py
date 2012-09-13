@@ -6,6 +6,7 @@ Created on Sep 12, 2012
 #*******************************
 #P1
 #*******************************
+from mx.DateTime.DateTime import TimeDelta
 input_dict = {'a': 123, 'b': 456}
 input_dict2 = {'a': (1,2,(2))}
 
@@ -125,3 +126,35 @@ class Game:
             
 game = Game(3)
 game.start_game()
+
+
+#*******************************
+#P3
+#*******************************
+from datetime import datetime
+from datetime import timedelta
+from time import sleep
+
+def time_slow(threshold = 0.05):
+    def _time_slow(function):
+        def inner(*args, **kwargs):
+            start = datetime.now()
+            function(*args, **kwargs)
+            duration = datetime.now() - start
+            
+            inner.__name__ = function.__name__
+            inner.__doc__ = function.__doc__
+            inner.__dict__.update(function.__dict__)
+            
+            if duration > timedelta(seconds = threshold) :
+                print function.__name__ + " took long enough " + str(duration)
+        return inner
+    return _time_slow
+
+@time_slow(threshold = 0.05)
+def fast_method(sleep_sec):
+    print "in fast method"
+    sleep(sleep_sec) 
+    print "out fast method"
+    
+fast_method(0.05)
