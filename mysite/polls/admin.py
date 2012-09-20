@@ -19,6 +19,7 @@ class PollAdmin(admin.ModelAdmin):
 
     # on view page -> order of the columns
     list_display = ("question", "pub_date", "was_published_today")
+
     # on view page -> capability to filter table by pub_date
     list_filter = ["pub_date"]
     # on view page
