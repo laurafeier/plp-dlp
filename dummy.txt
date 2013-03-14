@@ -1,3 +1,0 @@
-first line branch A
-second commit
-commit in master
